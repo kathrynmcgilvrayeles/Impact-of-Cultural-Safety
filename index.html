@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assessment Guide for L&D</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#1f2a52',     /* Dark Blue */
+                            teal: '#00bec7',     /* Teal */
+                            lightcyan: '#d2f0f0',/* Light Cyan */
+                            grey: '#8fa1a6',     /* Grey/Blue-Grey */
+                            lightteal: '#aed9d9' /* Light Teal */
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 25px -5px rgba(31, 42, 82, 0.1), 0 8px 10px -6px rgba(31, 42, 82, 0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles for Animations -->
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1f2a52;
+        }
+        
+        /* Ultra-compact Hover Card Transitions */
+        .term-card {
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            height: 125px; /* Drastically reduced height to prevent scrolling */
+            position: relative;
+            background-color: #fff;
+        }
+
+        .term-front, .term-back {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .term-front {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .term-back {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0.75rem;
+            overflow-y: auto;
+        }
+        
+        .term-card:hover .term-front,
+        .term-card:focus-within .term-front {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .term-card:hover .term-back,
+        .term-card:focus-within .term-back {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Tiny custom scrollbar */
+        .term-back::-webkit-scrollbar { width: 3px; }
+        .term-back::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
+
+        /* Print Styles for PDF Export */
+        @media print {
+            body { background-color: #fff; padding: 0; display: block; }
+            main { max-width: 100%; padding: 0; margin: 0; }
+            .grid { display: block; }
+            .bg-white { box-shadow: none !important; margin-bottom: 2rem; border: 1px solid #e2e8f0; }
+            .term-card { 
+                height: auto !important; 
+                page-break-inside: avoid; 
+                box-shadow: none !important; 
+                margin-bottom: 0.75rem;
+                display: flex;
+                flex-direction: row;
+                background-color: #fff !important;
+            }
+            .term-front, .term-back {
+                position: relative !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .term-front { 
+                width: 30%; 
+                border-right: 1px solid #e2e8f0; 
+                padding: 1rem !important;
+                background-color: #f8fafc !important;
+            }
+            .term-back { 
+                width: 70%; 
+                padding: 1rem !important; 
+                overflow: visible !important;
+                background-color: transparent !important;
+            }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center justify-center font-sans py-6">
+
+    <!-- Compact Interactive Infographic Section -->
+    <main class="w-full max-w-6xl px-4 mx-auto flex-grow flex flex-col justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5">
+
+            <!-- PILLAR 1: Design & Delivery -->
+            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-teal flex flex-col overflow-hidden">
+                <div class="px-4 py-3 bg-brand-lightcyan bg-opacity-30 border-b border-brand-lightcyan">
+                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-brand-teal text-lg"></i> Design & Delivery
+                    </h2>
+                </div>
+                
+                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
+                    
+                    <!-- Term 1 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-puzzle-piece text-[22px] text-brand-teal opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Appropriate</h3>
+                        </div>
+                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
+                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Suitable or fitting for a particular purpose.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Ensure the assessment method is genuinely fit for purpose. AI should enhance measurement, not be a default.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 2 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-crosshairs text-[22px] text-brand-teal opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Accurate</h3>
+                        </div>
+                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
+                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Exactly conforming to truth, rule or standard.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Assessment outcomes must conform to truth. AI grading engines must be regularly validated to ensure no bias or error.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 3 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-layer-group text-[22px] text-brand-teal opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Reliable &<br>Consistent</h3>
+                        </div>
+                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
+                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Trustworthy; constantly adhering to principles.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Assessments must yield stable, fair results over time. Evaluate every learner against the same steady principles.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 4 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-chart-line text-[22px] text-brand-teal opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Effective</h3>
+                        </div>
+                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
+                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Producing the intended or expected result.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                The assessment must produce practical results—actually proving that the learner can perform the job.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PILLAR 2: Governance & Trust -->
+            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-grey flex flex-col overflow-hidden">
+                <div class="px-4 py-3 bg-brand-grey bg-opacity-10 border-b border-gray-100">
+                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-brand-grey text-lg"></i> Governance & Trust
+                    </h2>
+                </div>
+                
+                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
+
+                    <!-- Term 1 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-cubes text-[22px] text-brand-grey opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Robust</h3>
+                        </div>
+                        <div class="term-back bg-brand-grey bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Able to withstand critical analysis & variation.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Assessments must remain functional and fair even when learners use varied AI tools or attempt to bypass guardrails.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 2 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-scale-balanced text-[22px] text-brand-grey opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Defensible &<br>Justifiable</h3>
+                        </div>
+                        <div class="term-back bg-brand-grey bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Capable of being shown to be right.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Every decision—from using AI in grading to banning certain tools—must be defendable to stakeholders and regulators.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 3 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-lock text-[22px] text-brand-grey opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Safeguard</h3>
+                        </div>
+                        <div class="term-back bg-brand-grey bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Something serving as a protection or defence.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Put clear measures in place to protect data privacy, prevent cheating, and ensure a safe assessment environment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 4 -->
+                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-eye text-[22px] text-brand-grey opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Oversight</h3>
+                        </div>
+                        <div class="term-back bg-brand-grey bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> To notice or take into account; avoid omission.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Establish clear processes to monitor AI outputs and catch inadvertent errors before they impact a learner.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PILLAR 3: Human Accountability -->
+            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-dark flex flex-col overflow-hidden">
+                <div class="px-4 py-3 bg-brand-lightteal bg-opacity-30 border-b border-brand-lightteal">
+                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie text-brand-dark text-lg"></i> Accountability
+                    </h2>
+                </div>
+                
+                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
+
+                    <!-- Term 1 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-clipboard-check text-[22px] text-brand-dark opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Should <span class="block text-[11px] font-normal opacity-70 mt-0.5">(Obligation)</span></h3>
+                        </div>
+                        <div class="term-back bg-brand-dark bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Indicating obligation.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Define clear ethical obligations for L&D teams and learners regarding the transparency and honesty of AI usage.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 2 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-hand-holding-hand text-[22px] text-brand-dark opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Intervene</h3>
+                        </div>
+                        <div class="term-back bg-brand-dark bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> To come between in action; intercede.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Establish "human-in-the-loop" protocols. Be ready to mediate or override systems if an AI grade is disputed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 3 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-user-check text-[22px] text-brand-dark opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center">Accountable</h3>
+                        </div>
+                        <div class="term-back bg-brand-dark bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> Responsible, capable of being explained.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Decisions must be transparent. If an AI gives a grade, L&D must be able to explain exactly why and how.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Term 4 -->
+                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
+                        <div class="term-front flex-col gap-1.5">
+                            <i class="fa-solid fa-rotate text-[22px] text-brand-dark opacity-80"></i>
+                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Ensure &<br>Active</h3>
+                        </div>
+                        <div class="term-back bg-brand-dark bg-opacity-5">
+                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
+                                <strong class="text-brand-dark">Def:</strong> To make sure. Constantly engaged, causing change.
+                            </p>
+                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
+                                Take proactive steps for integrity. Remain engaged, updating assessment strategies to stay relevant as AI changes.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Download PDF Section -->
+        <div class="mt-8 text-center no-print">
+            <button onclick="window.print()" class="inline-flex items-center gap-2 px-6 py-2.5 bg-brand-dark text-white rounded-full hover:bg-brand-teal transition-colors duration-300 shadow-md font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2">
+                <i class="fa-solid fa-download"></i> Download as PDF
+            </button>
+            <p class="text-[11px] text-brand-grey mt-2">Uses your browser's print dialog. Select "Save to PDF".</p>
+        </div>
+    </main>
+</body>
+</html>
