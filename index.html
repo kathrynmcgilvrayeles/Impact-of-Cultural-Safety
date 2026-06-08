@@ -3,388 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Assessment Guide for L&D</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#1f2a52',     /* Dark Blue */
-                            teal: '#00bec7',     /* Teal */
-                            lightcyan: '#d2f0f0',/* Light Cyan */
-                            grey: '#8fa1a6',     /* Grey/Blue-Grey */
-                            lightteal: '#aed9d9' /* Light Teal */
-                        }
-                    },
-                    boxShadow: {
-                        'soft': '0 10px 25px -5px rgba(31, 42, 82, 0.1), 0 8px 10px -6px rgba(31, 42, 82, 0.1)',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Custom Styles for Animations -->
+    <title>L&D AI Guidelines: Culture, Language, and Diversity</title>
     <style>
+        :root {
+            --primary-dark: #1f2a52;
+            --primary-accent: #00bec7;
+            --light-accent-1: #d2f0f0;
+            --muted-grey: #8fa1a6;
+            --light-accent-2: #aed9d9;
+            --danger-red: #d9534f;
+            --danger-light: #fce8e8;
+            --success-green: #2e7d32;
+            --success-light: #e8f5e9;
+        }
+
         body {
-            background-color: #f8fafc;
-            color: #1f2a52;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-dark);
+            line-height: 1.45;
+            margin: 0;
+            padding: 10px 20px;
+            background-color: #f9fbfb;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: #ffffff;
+            border: 1px solid var(--muted-grey);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(31, 42, 82, 0.08);
+        }
+
+        .header {
+            background-color: var(--primary-dark);
+            color: var(--light-accent-1);
+            padding: 20px 25px;
+            border-bottom: 4px solid var(--primary-accent);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary-accent);
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 15px;
+            color: var(--light-accent-1);
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--light-accent-2);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .callout-primary {
+            background-color: var(--light-accent-1);
+            padding: 15px 20px;
+            border-left: 5px solid var(--primary-accent);
+            border-radius: 0 4px 4px 0;
+            margin: 15px 0;
+        }
+
+        .callout-primary h4 {
+            margin-top: 0;
+            color: var(--primary-dark);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .callout-secondary {
+            background-color: var(--light-accent-2);
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        ul {
+            margin-top: 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .action-list li strong {
+            color: var(--primary-dark);
+            display: inline-block;
+            margin-bottom: 2px;
         }
         
-        /* Ultra-compact Hover Card Transitions */
-        .term-card {
-            cursor: pointer;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-            height: 125px; /* Drastically reduced height to prevent scrolling */
+        .action-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .action-list li {
             position: relative;
-            background-color: #fff;
+            padding-left: 18px;
+            margin-bottom: 12px;
+            font-size: 14.5px;
         }
 
-        .term-front, .term-back {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .action-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-list li::before {
+            content: "•";
+            color: var(--primary-accent);
+            font-weight: bold;
+            font-size: 20px;
             position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
+            left: 0;
+            top: -4px;
         }
 
-        .term-front {
-            opacity: 1;
-            transform: translateY(0);
-            z-index: 10;
+        /* Tab Activity Styles */
+        .tab-container {
+            margin-top: 15px;
+            border: 1px solid var(--muted-grey);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .tab-header {
+            display: flex;
+            background-color: var(--light-accent-1);
+            border-bottom: 1px solid var(--muted-grey);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            border-right: 1px solid var(--muted-grey);
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-dark);
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .tab-button:last-child {
+            border-right: none;
+        }
+
+        .tab-button:hover {
+            background-color: var(--light-accent-2);
+        }
+
+        .tab-button.active {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--primary-accent);
+            color: var(--primary-accent);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h3 {
+            margin-top: 0;
+            color: var(--primary-accent);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Translation Controls */
+        .translation-controls {
+            margin-top: 15px;
+            margin-bottom: -5px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .term-back {
-            opacity: 0;
-            transform: translateY(10px);
-            pointer-events: none;
-            z-index: 20;
+        .translation-note {
+            font-size: 13px;
+            color: #5a6b70;
+            font-style: italic;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .translate-btn {
+            background-color: #f9fbfb;
+            border: 1px solid var(--muted-grey);
+            padding: 4px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--primary-dark);
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        .translate-btn:hover {
+            background-color: var(--light-accent-2);
+        }
+
+        .translate-btn.active {
+            background-color: var(--primary-accent);
+            color: #ffffff;
+            border-color: var(--primary-accent);
+        }
+
+        /* Bad Example Styles & Modal */
+        .bad-example-btn {
+            background-color: #ffffff;
+            border: 1px solid var(--danger-red);
+            color: var(--danger-red);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .bad-example-btn:hover {
+            background-color: var(--danger-light);
+        }
+
+        /* Good Example Styles */
+        .good-example-btn {
+            background-color: #ffffff;
+            border: 1px solid var(--success-green);
+            color: var(--success-green);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .good-example-btn:hover {
+            background-color: var(--success-light);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(31, 42, 82, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-in-out;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal-overlay.show {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0.75rem;
-            overflow-y: auto;
-        }
-        
-        .term-card:hover .term-front,
-        .term-card:focus-within .term-front {
-            opacity: 0;
-            transform: translateY(-10px);
         }
 
-        .term-card:hover .term-back,
-        .term-card:focus-within .term-back {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .modal-content {
+            background-color: #ffffff;
+            border-left: 6px solid var(--danger-red);
+            padding: 25px;
+            max-width: 500px;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        /* Tiny custom scrollbar */
-        .term-back::-webkit-scrollbar { width: 3px; }
-        .term-back::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--muted-grey);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
 
-        /* Print Styles for PDF Export */
-        @media print {
-            body { background-color: #fff; padding: 0; display: block; }
-            main { max-width: 100%; padding: 0; margin: 0; }
-            .grid { display: block; }
-            .bg-white { box-shadow: none !important; margin-bottom: 2rem; border: 1px solid #e2e8f0; }
-            .term-card { 
-                height: auto !important; 
-                page-break-inside: avoid; 
-                box-shadow: none !important; 
-                margin-bottom: 0.75rem;
-                display: flex;
-                flex-direction: row;
-                background-color: #fff !important;
-            }
-            .term-front, .term-back {
-                position: relative !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-            .term-front { 
-                width: 30%; 
-                border-right: 1px solid #e2e8f0; 
-                padding: 1rem !important;
-                background-color: #f8fafc !important;
-            }
-            .term-back { 
-                width: 70%; 
-                padding: 1rem !important; 
-                overflow: visible !important;
-                background-color: transparent !important;
-            }
-            .no-print { display: none !important; }
+        .modal-close:hover {
+            color: var(--danger-red);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col items-center justify-center font-sans py-6">
+<body>
 
-    <!-- Compact Interactive Infographic Section -->
-    <main class="w-full max-w-6xl px-4 mx-auto flex-grow flex flex-col justify-center">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5">
+<div class="container">
+    <div class="header">
+        <h1>AI, Cultural Safety, and Inclusive L&D</h1>
+        <p>Guidelines for designing content that respects diversity, language, and Indigenous Data Sovereignty.</p>
+    </div>
 
-            <!-- PILLAR 1: Design & Delivery -->
-            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-teal flex flex-col overflow-hidden">
-                <div class="px-4 py-3 bg-brand-lightcyan bg-opacity-30 border-b border-brand-lightcyan">
-                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
-                        <i class="fa-solid fa-bullseye text-brand-teal text-lg"></i> Design & Delivery
-                    </h2>
-                </div>
-                
-                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
-                    
-                    <!-- Term 1 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-puzzle-piece text-[22px] text-brand-teal opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Appropriate</h3>
-                        </div>
-                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
-                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Suitable or fitting for a particular purpose.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Ensure the assessment method is genuinely fit for purpose. AI should enhance measurement, not be a default.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 2 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-crosshairs text-[22px] text-brand-teal opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Accurate</h3>
-                        </div>
-                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
-                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Exactly conforming to truth, rule or standard.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Assessment outcomes must conform to truth. AI grading engines must be regularly validated to ensure no bias or error.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 3 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-layer-group text-[22px] text-brand-teal opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Reliable &<br>Consistent</h3>
-                        </div>
-                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
-                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Trustworthy; constantly adhering to principles.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Assessments must yield stable, fair results over time. Evaluate every learner against the same steady principles.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 4 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-chart-line text-[22px] text-brand-teal opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Effective</h3>
-                        </div>
-                        <div class="term-back bg-brand-lightcyan bg-opacity-10">
-                            <p class="text-[11px] text-brand-grey border-b border-brand-lightteal pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Producing the intended or expected result.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                The assessment must produce practical results—actually proving that the learner can perform the job.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- PILLAR 2: Governance & Trust -->
-            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-grey flex flex-col overflow-hidden">
-                <div class="px-4 py-3 bg-brand-grey bg-opacity-10 border-b border-gray-100">
-                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
-                        <i class="fa-solid fa-shield-halved text-brand-grey text-lg"></i> Governance & Trust
-                    </h2>
-                </div>
-                
-                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
-
-                    <!-- Term 1 -->
-                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-cubes text-[22px] text-brand-grey opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Robust</h3>
-                        </div>
-                        <div class="term-back bg-brand-grey bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Able to withstand critical analysis & variation.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Assessments must remain functional and fair even when learners use varied AI tools or attempt to bypass guardrails.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 2 -->
-                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-scale-balanced text-[22px] text-brand-grey opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Defensible &<br>Justifiable</h3>
-                        </div>
-                        <div class="term-back bg-brand-grey bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Capable of being shown to be right.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Every decision—from using AI in grading to banning certain tools—must be defendable to stakeholders and regulators.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 3 -->
-                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-lock text-[22px] text-brand-grey opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Safeguard</h3>
-                        </div>
-                        <div class="term-back bg-brand-grey bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Something serving as a protection or defence.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Put clear measures in place to protect data privacy, prevent cheating, and ensure a safe assessment environment.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 4 -->
-                    <div class="border border-gray-200 rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-eye text-[22px] text-brand-grey opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Oversight</h3>
-                        </div>
-                        <div class="term-back bg-brand-grey bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> To notice or take into account; avoid omission.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Establish clear processes to monitor AI outputs and catch inadvertent errors before they impact a learner.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- PILLAR 3: Human Accountability -->
-            <div class="bg-white rounded-xl shadow-sm border-t-4 border-brand-dark flex flex-col overflow-hidden">
-                <div class="px-4 py-3 bg-brand-lightteal bg-opacity-30 border-b border-brand-lightteal">
-                    <h2 class="text-sm uppercase tracking-wider font-bold text-brand-dark flex items-center gap-2">
-                        <i class="fa-solid fa-user-tie text-brand-dark text-lg"></i> Accountability
-                    </h2>
-                </div>
-                
-                <div class="p-3 flex-grow flex flex-col gap-2 bg-gray-50">
-
-                    <!-- Term 1 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-clipboard-check text-[22px] text-brand-dark opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Should <span class="block text-[11px] font-normal opacity-70 mt-0.5">(Obligation)</span></h3>
-                        </div>
-                        <div class="term-back bg-brand-dark bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Indicating obligation.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Define clear ethical obligations for L&D teams and learners regarding the transparency and honesty of AI usage.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 2 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-hand-holding-hand text-[22px] text-brand-dark opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Intervene</h3>
-                        </div>
-                        <div class="term-back bg-brand-dark bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> To come between in action; intercede.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Establish "human-in-the-loop" protocols. Be ready to mediate or override systems if an AI grade is disputed.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 3 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-user-check text-[22px] text-brand-dark opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center">Accountable</h3>
-                        </div>
-                        <div class="term-back bg-brand-dark bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> Responsible, capable of being explained.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Decisions must be transparent. If an AI gives a grade, L&D must be able to explain exactly why and how.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Term 4 -->
-                    <div class="border border-brand-lightteal rounded-lg shadow-sm hover:shadow-md term-card" tabindex="0">
-                        <div class="term-front flex-col gap-1.5">
-                            <i class="fa-solid fa-rotate text-[22px] text-brand-dark opacity-80"></i>
-                            <h3 class="text-base font-bold text-brand-dark text-center leading-tight">Ensure &<br>Active</h3>
-                        </div>
-                        <div class="term-back bg-brand-dark bg-opacity-5">
-                            <p class="text-[11px] text-brand-grey border-b border-gray-200 pb-1 mb-1 leading-tight">
-                                <strong class="text-brand-dark">Def:</strong> To make sure. Constantly engaged, causing change.
-                            </p>
-                            <p class="text-[11px] text-brand-dark font-medium leading-tight">
-                                Take proactive steps for integrity. Remain engaged, updating assessment strategies to stay relevant as AI changes.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+    <div class="content">
         
-        <!-- Download PDF Section -->
-        <div class="mt-8 text-center no-print">
-            <button onclick="window.print()" class="inline-flex items-center gap-2 px-6 py-2.5 bg-brand-dark text-white rounded-full hover:bg-brand-teal transition-colors duration-300 shadow-md font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2">
-                <i class="fa-solid fa-download"></i> Download as PDF
-            </button>
-            <p class="text-[11px] text-brand-grey mt-2">Uses your browser's print dialog. Select "Save to PDF".</p>
+        <h2>Designing for the Broad Spectrum of Diversity</h2>
+        <p>AI models are notorious for amplifying existing societal biases related to gender identity, linguistic background, and religious beliefs. If we let AI draft a case study or generate an assessment rubric without human oversight, we risk embedding these biases directly into our organisational learning.</p>
+        
+        <p>Explore the tabs below to see how to actively prompt and review AI outputs for different diverse groups across your workforce:</p>
+
+        <div class="tab-container">
+            <div class="tab-header">
+                <button class="tab-button active" onclick="openTab(event, 'tab-migrants')">Migrants & ESL</button>
+                <button class="tab-button" onclick="openTab(event, 'tab-lgbtqi')">LGBTQI+</button>
+                <button class="tab-button" onclick="openTab(event, 'tab-religious')">Religious Diversity</button>
+                <button class="tab-button" onclick="openTab(event, 'tab-intersectionality')">Intersectionality</button>
+            </div>
+
+            <!-- Tab 1: Migrants & ESL -->
+            <div id="tab-migrants" class="tab-content active">
+                <h3>Migrants & ESL (English as a Second Language)</h3>
+                <p>AI models often default to highly idiomatic, complex, or US/UK-centric English. This creates unnecessary cognitive load for learners who speak English as a second or additional language.</p>
+                
+                <div class="translation-controls">
+                    <div class="translation-note">💡 AI is a great tool to assist in translation, but it does need to be checked for cultural nuance and accuracy.</div>
+                    <button class="translate-btn active" onclick="translateESLBox('en', this)">English</button>
+                    <button class="translate-btn" onclick="translateESLBox('zh', this)">Mandarin</button>
+                    <button class="translate-btn" onclick="translateESLBox('hi', this)">Hindi</button>
+                    <button class="translate-btn" onclick="translateESLBox('ar', this)">Arabic</button>
+                </div>
+
+                <div class="callout-primary" id="esl-action-box">
+                    <h4>L&D Action Points:</h4>
+                    <ul class="action-list">
+                        <li><strong>Prompt for Plain English:</strong> Explicitly instruct the AI: "Many of our learners are ESL, so use Plain English, avoid idioms, jargon, and colloquialisms."</li>
+                        <li><strong>Verify Cultural References:</strong> Remove AI-generated metaphors that rely on specific cultural knowledge (e.g., sports analogies like "hitting a home run" or "stepping up to the plate").</li>
+                        <li><strong>Combat Scenario Bias:</strong> Actively review AI outputs to ensure generated scenarios reflect diverse linguistic backgrounds without falling into biased stereotypes about migrant workers' roles or capabilities.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab 2: LGBTQI+ -->
+            <div id="tab-lgbtqi" class="tab-content">
+                <h3>LGBTQI+ Inclusion</h3>
+                <p>Default AI outputs often assume heteronormativity. Case studies will overwhelmingly feature heterosexual couples and binary genders unless specifically directed otherwise.</p>
+                
+                <button class="bad-example-btn" onclick="openModal('lgbtqi-modal')">View Poor Example</button>
+
+                <div class="callout-primary">
+                    <h4>L&D Action Points:</h4>
+                    <ul class="action-list">
+                        <li><strong>Mandate Inclusive Pronouns:</strong> Instruct AI to use "they/them" or diverse pronouns in character briefs.</li>
+                        <li><strong>Normalise Diverse Families:</strong> Explicitly prompt for same-sex partners or chosen families in work-life scenarios.</li>
+                        <li><strong>Avoid the "Token" Trap:</strong> Integrate LGBTQI+ characters naturally into core business scenarios, not just standalone D&I modules.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab 3: Religious Diversity -->
+            <div id="tab-religious" class="tab-content">
+                <h3>Religious Diversity</h3>
+                <p>AI models often default to generic secular or culturally Western norms. When creating learning scenarios, we want to ensure all religious backgrounds—whether Christian, Muslim, Jewish, Hindu, Buddhist, or any other faith—are respected and represented accurately.</p>
+                
+                <button class="good-example-btn" onclick="openModal('religious-modal')">View Good Prompt</button>
+
+                <div class="callout-primary">
+                    <h4>L&D Action Points:</h4>
+                    <ul class="action-list">
+                        <li><strong>Inclusive Scenarios:</strong> If using AI to generate event planning, team lunch, or scheduling scenarios, explicitly prompt it to account for a variety of religious observances, holidays, and dietary requirements (e.g., Halal, Kosher, or fasting periods).</li>
+                        <li><strong>Broaden Perspectives:</strong> Review AI outputs to ensure they don't assume a single universal experience. Aim for a balanced mix of holidays and traditions (such as Christmas, Eid, Diwali, or Hanukkah) when creating general "family time" or "celebration" examples.</li>
+                        <li><strong>Respectful Representation:</strong> Ensure any mention of religious practices, clothing, or beliefs across all faiths is accurate, nuanced, and respectful. Fact-check AI to prevent caricatures or oversimplifications.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab 4: Intersectionality -->
+            <div id="tab-intersectionality" class="tab-content">
+                <h3>Intersectionality</h3>
+                <p>People don't fit neatly into just one box. An employee might be an older, queer migrant. AI struggles with intersectionality, often addressing one facet of diversity while completely ignoring others.</p>
+                <div class="callout-primary">
+                    <h4>L&D Action Points:</h4>
+                    <ul class="action-list">
+                        <li><strong>Layered Prompts:</strong> Don't just ask AI for a "diverse persona." Provide specific, multi-layered demographics to create realistic, intersectional case studies.</li>
+                        <li><strong>Check for Conflicting Bias:</strong> Sometimes AI will counteract a gender bias but introduce an age bias in the same paragraph. Human review must look at the whole picture.</li>
+                        <li><strong>Focus on Systemic Barriers:</strong> When generating leadership or conflict resolution scenarios, guide the AI to acknowledge how intersectional identities might experience workplace dynamics and communication differently.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </main>
+
+    </div>
+</div>
+
+<!-- Modal Overlay (Placed outside container) -->
+<div id="lgbtqi-modal" class="modal-overlay" onclick="if(event.target === this) closeModal('lgbtqi-modal')">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('lgbtqi-modal')">✖</button>
+        <h4 style="margin-top: 0; color: var(--danger-red); font-size: 18px; margin-bottom: 15px;">⚠️ Poor AI-Generated Case Study</h4>
+        <p style="background-color: var(--danger-light); padding: 15px; border-radius: 4px; font-style: italic;">
+            "Alex, a non-binary employee, is told by their manager that their passion for Pride month initiatives is a 'lifestyle focus' distracting them from 'actual work' and demonstrating a lack of 'traditional work ethic'."
+        </p>
+        <p style="margin-bottom: 0; font-size: 15px;"><strong>Why this is poor:</strong> The AI uses coded, biased language ("lifestyle focus") and pits the employee's identity directly against their professionalism.</p>
+    </div>
+</div>
+
+<!-- Religious Good Prompt Modal -->
+<div id="religious-modal" class="modal-overlay" onclick="if(event.target === this) closeModal('religious-modal')">
+    <div class="modal-content" style="border-left-color: var(--success-green);">
+        <button class="modal-close" onclick="closeModal('religious-modal')">✖</button>
+        <h4 style="margin-top: 0; color: var(--success-green); font-size: 18px; margin-bottom: 15px;">✅ Good AI Prompt Example</h4>
+        <p style="background-color: var(--success-light); padding: 15px; border-radius: 4px; font-style: italic; font-size: 14px;">
+            "Generate a leadership case study about scheduling a mandatory 3-day team offsite. The team includes: 
+            <br><br>• Sarah, who observes Shabbat and logs off by Friday afternoon.
+            <br>• Ali, who requires prayer breaks and is fasting for Ramadan.
+            <br>• John, who is organising his family's Easter weekend events.
+            <br><br>Show how an inclusive manager proactively designs the offsite agenda, catering, and timing so all team members can fully participate without compromising their religious observances."
+        </p>
+        <p style="margin-bottom: 0; font-size: 15px;"><strong>Why this works:</strong> Instead of asking for a generic "diverse team," this prompt provides specific parameters. It forces the AI to treat various religious practices equitably and frames them as standard planning considerations rather than workplace "issues."</p>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        
+        // Hide all tab content
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        
+        // Remove active class from all buttons
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        
+        // Show current tab and add active class to button
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    function openModal(id) {
+        document.getElementById(id).classList.add("show");
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.remove("show");
+    }
+
+    // Translation Data and Function
+    const eslTranslations = {
+        'en': `
+            <h4>L&D Action Points:</h4>
+            <ul class="action-list">
+                <li><strong>Prompt for Plain English:</strong> Explicitly instruct the AI: "Many of our learners are ESL, so use Plain English, avoid idioms, jargon, and colloquialisms."</li>
+                <li><strong>Verify Cultural References:</strong> Remove AI-generated metaphors that rely on specific cultural knowledge (e.g., sports analogies like "hitting a home run" or "stepping up to the plate").</li>
+                <li><strong>Combat Scenario Bias:</strong> Actively review AI outputs to ensure generated scenarios reflect diverse linguistic backgrounds without falling into biased stereotypes about migrant workers' roles or capabilities.</li>
+            </ul>
+        `,
+        'zh': `
+            <h4>L&D 行动要点：</h4>
+            <ul class="action-list">
+                <li><strong>提示使用简明英语：</strong> 明确指示 AI：“我们的许多学员是将其作为第二语言（ESL）的，因此请使用简明英语，避免使用习语、行话和口语。”</li>
+                <li><strong>验证文化背景：</strong> 删除依赖特定文化知识的 AI 生成的隐喻（例如，像“打出本垒打”这样的体育类比）。</li>
+                <li><strong>消除场景偏见：</strong> 积极审查 AI 输出，确保生成的场景反映了不同的语言背景，而不落入对移民工人角色或能力的偏见刻板印象。</li>
+            </ul>
+        `,
+        'hi': `
+            <h4>L&D कार्रवाई बिंदु:</h4>
+            <ul class="action-list">
+                <li><strong>सरल अंग्रेजी के लिए संकेत दें:</strong> AI को स्पष्ट रूप से निर्देश दें: "हमारे कई शिक्षार्थी ESL हैं, इसलिए सरल अंग्रेजी का उपयोग करें, मुहावरों, शब्दजाल और बोलचाल की भाषा से बचें।"</li>
+                <li><strong>सांस्कृतिक संदर्भों को सत्यापित करें:</strong> विशिष्ट सांस्कृतिक ज्ञान पर निर्भर AI-उत्पन्न रूपकों को हटा दें।</li>
+                <li><strong>परिदृश्य पूर्वाग्रह से निपटें:</strong> यह सुनिश्चित करने के लिए AI आउटपुट की सक्रिय रूप से समीक्षा करें कि उत्पन्न परिदृश्य प्रवासी श्रमिकों की भूमिकाओं या क्षमताओं के बारे में पक्षपाती रूढ़ियों में पड़े बिना विविध भाषाई पृष्ठभूमि को दर्शाते हैं।</li>
+            </ul>
+        `,
+        'ar': `
+            <div dir="rtl">
+                <h4>نقاط عمل قسم التعلم والتطوير:</h4>
+                <ul class="action-list" style="padding-right: 25px; padding-left: 0;">
+                    <li style="padding-right: 24px; padding-left: 0;"><strong>المطالبة بلغة إنجليزية بسيطة:</strong> وجه الذكاء الاصطناعي صراحةً: "العديد من المتعلمين لدينا يدرسون الإنجليزية كلغة ثانية، لذا استخدم لغة إنجليزية بسيطة، وتجنب التعابير الاصطلاحية، والمصطلحات المعقدة، واللغة العامية."</li>
+                    <li style="padding-right: 24px; padding-left: 0;"><strong>التحقق من المراجع الثقافية:</strong> قم بإزالة الاستعارات التي يولدها الذكاء الاصطناعي والتي تعتمد على معرفة ثقافية محددة.</li>
+                    <li style="padding-right: 24px; padding-left: 0;"><strong>مكافحة التحيز في السيناريوهات:</strong> قم بمراجعة مخرجات الذكاء الاصطناعي بنشاط للتأكد من أن السيناريوهات التي تم إنشاؤها تعكس خلفيات لغوية متنوعة دون الوقوع في قوالب نمطية متحيزة حول أدوار العمال المهاجرين.</li>
+                </ul>
+            </div>
+        `
+    };
+
+    function translateESLBox(lang, btnElement) {
+        // Update content
+        document.getElementById('esl-action-box').innerHTML = eslTranslations[lang];
+        
+        // Update active button state
+        const buttons = document.getElementsByClassName('translate-btn');
+        for(let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        btnElement.classList.add('active');
+    }
+</script>
+
 </body>
 </html>
